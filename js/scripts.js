@@ -33,11 +33,12 @@ hideSelectTheme.hidden = true;
 //Hides the color drop-down
 color.hidden = true;
 
-//Displays the "Please select a T-shirt theme"
+//Updating/displaying the "Please select a T-shirt theme"
 p.innerHTML = 'Please select a T-shirt theme';
 colorsJsPuns.append(p);
 
 //HIDING/DISPLAYING APPROPRIATE COLORS
+//Looping through the colors based on the chosen design
 const design = document.getElementById('design');
 const colors = document.querySelectorAll('#color option');
 
@@ -70,13 +71,17 @@ design.addEventListener('change', (e) => {
   }
 });
 //ACTIVITIES SECTION
+//Declaring variables for this section
 const activities = document.querySelector('.activities');
 let totalActivityCost = 0;
 let totalCost = document.createElement('div');
 
+//Appending the "Total $" to the bottom of the acvities section
 totalCost.innerText = 'Total: $' + totalActivityCost;
 activities.append(totalCost);
 
+//Listening to the checkboxes and disabling conflicting events
+//Also calculating the amount by the specific activities chosen and displaying them
 const checkboxes = document.querySelectorAll('.activities input');
 activities.addEventListener('change', (e) => {
   const clicked = e.target;
@@ -102,13 +107,15 @@ if (clicked.checked) {
   totalCost.innerText = 'Total: $' + totalActivityCost;
 });
 
-//PAYMENT SECTION
+//PAYMENT SECTION - VARIABLES
 const hideSelectPayment = document.querySelector('#payment option');
 const payment = document.getElementById('payment');
 const creditCard = document.getElementById('credit-card');
 const paypal = document.getElementById('paypal');
 const bitcoin = document.getElementById('bitcoin');
 
+//Hiding select payment, bitcoin and paypal options,
+//and only showing the credit card option.
 hideSelectPayment.hidden = true;
 creditCard.hidden = false;
 paypal.hidden = true;
@@ -140,14 +147,14 @@ if (payment.value == 'paypal') {
 });
 
 
-//FORM VALIDATION
+//FORM VALIDATION- VARIABLES
 const mail = document.getElementById('mail');
 const ccNum = document.getElementById('cc-num');
 const zipCode = document.getElementById('zip');
 const cvv = document.getElementById('cvv');
 const activitiesInput = document.querySelectorAll('.activities input');
 
-
+//Validating name for name field
 const nameValidator = () => {
   const nameInput = name.value;
   const nameField = /^[a-zA-Z]+$/;
@@ -160,6 +167,7 @@ const nameValidator = () => {
   }
 }
 
+//Validating email for email field
 const mailValidator = () => {
 const mailInput = mail.value;
 const mailField = /^[^@]+@[^@.]+\.[a-z]+$/i; //i after /
@@ -172,6 +180,7 @@ const mailField = /^[^@]+@[^@.]+\.[a-z]+$/i; //i after /
   }
 }
 
+//Validating activities to make sure at least on was chosen
 const activitiesValidator = () => {
 for (let i=0; i<activitiesInput.length; i++) {
   if (activitiesInput[i].checked) {
@@ -183,12 +192,14 @@ activities.style.border = '2px solid red';
     return false;
 }
 
+//Displaying error indicators if user leaves a field empty or inncorrectly fills it out.
 name.addEventListener('keyup', nameValidator);
 name.addEventListener('blur', nameValidator);
 mail.addEventListener('keyup', mailValidator);
 mail.addEventListener('blur', mailValidator);
 activities.addEventListener('mouseout', activitiesValidator);
 
+//Preventing page relaod
 document.addEventListener('submit', (e) => {
 if (!nameValidator()) {
   e.preventDefault();
@@ -201,6 +212,8 @@ if (!activitiesValidator()) {
   }
 });
 
+//Only if credit card was selected this validation for the
+//credit card runs.
 if (payment.value == 'credit card') {
 const ccNumValidator = () => {
 const ccNumInput = ccNum.value;
@@ -213,6 +226,7 @@ const ccNumField = /^\d{13,16}$/;
     return false;
 }
 
+//Validating zip code
 const zipCodeValidator = () => {
 const zipCodeInput = zipCode.value;
 const zipCodeField = /^\d{5}$/;
@@ -224,6 +238,7 @@ const zipCodeField = /^\d{5}$/;
     return false;
 }
 
+//Validating CVV
 const cvvValidator = () => {
 const cvvInput = cvv.value;
 const cvvField = /^\d{3}$/;
