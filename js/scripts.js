@@ -180,7 +180,7 @@ const mailField = /^[^@]+@[^@.]+\.[a-z]+$/i; //i after /
   }
 }
 
-//Validating activities to make sure at least on was chosen
+//Validating activities to make sure at least one was chosen
 const activitiesValidator = () => {
 for (let i=0; i<activitiesInput.length; i++) {
   if (activitiesInput[i].checked) {
