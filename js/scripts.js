@@ -108,15 +108,15 @@ if (clicked.checked) {
 });
 
 //PAYMENT SECTION - VARIABLES
-const hideSelectPayment = document.querySelector('#payment option');
+//Removing select payment as an option
+const hideSelectPayment = document.querySelector('#payment option').remove();
 const payment = document.getElementById('payment');
 const creditCard = document.getElementById('credit-card');
 const paypal = document.getElementById('paypal');
 const bitcoin = document.getElementById('bitcoin');
 
-//Hiding select payment, bitcoin and paypal options,
-//and only showing the credit card option.
-hideSelectPayment.hidden = true;
+//Hiding bitcoin and paypal options,
+//and only displaying the credit card option.
 creditCard.hidden = false;
 paypal.hidden = true;
 bitcoin.hidden = true;
@@ -191,30 +191,6 @@ for (let i=0; i<activitiesInput.length; i++) {
 activities.style.border = '2px solid red';
     return false;
 }
-
-//Displaying error indicators if user leaves a field empty or inncorrectly fills it out.
-name.addEventListener('keyup', nameValidator);
-name.addEventListener('blur', nameValidator);
-mail.addEventListener('keyup', mailValidator);
-mail.addEventListener('blur', mailValidator);
-activities.addEventListener('mouseout', activitiesValidator);
-
-//Preventing page relaod
-document.addEventListener('submit', (e) => {
-if (!nameValidator()) {
-  e.preventDefault();
-}
-if (!mailValidator()) {
-  e.preventDefault();
-  }
-if (!activitiesValidator()) {
-  e.preventDefault();
-  }
-});
-
-//Only if credit card was selected this validation for the
-//credit card runs.
-if (payment.value == 'credit card') {
 const ccNumValidator = () => {
 const ccNumInput = ccNum.value;
 const ccNumField = /^\d{13,16}$/;
@@ -250,19 +226,38 @@ const cvvField = /^\d{3}$/;
     return false;
 }
 
+//Displaying error indicators if user leaves a field empty or inncorrectly fills it out.
+name.addEventListener('keyup', nameValidator);
+name.addEventListener('blur', nameValidator);
+mail.addEventListener('keyup', mailValidator);
+mail.addEventListener('blur', mailValidator);
+activities.addEventListener('mouseout', activitiesValidator);
 ccNum.addEventListener('keyup', ccNumValidator);
 zipCode.addEventListener('keyup', zipCodeValidator);
 cvv.addEventListener('keyup', cvvValidator);
 
+//Preventing page relaod
 document.addEventListener('submit', (e) => {
-if (!ccNumValidator()) {
+if (!nameValidator()) {
   e.preventDefault();
-    }
-if (!zipCodeValidator()) {
+}
+if (!mailValidator()) {
   e.preventDefault();
-    }
-if (!cvvValidator()) {
+  }
+if (!activitiesValidator()) {
   e.preventDefault();
+  }
+//Only if credit card was selected this validation for the
+//credit card runs.
+if (payment.value == 'credit card') {
+  if (!ccNumValidator()) {
+    e.preventDefault();
+      }
+  if (!zipCodeValidator()) {
+    e.preventDefault();
+      }
+  if (!cvvValidator()) {
+    e.preventDefault();
+      }
     }
 });
-}
