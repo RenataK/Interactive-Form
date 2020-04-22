@@ -184,7 +184,7 @@ const mailField = /^[^@]+@[^@.]+\.[a-z]+$/i; //i after /
 const activitiesValidator = () => {
 for (let i=0; i<activitiesInput.length; i++) {
   if (activitiesInput[i].checked) {
-    activities.style.border = '2px solid white';
+    activities.style = '2px solid #5e97b0';
     return true;
   }
 }
