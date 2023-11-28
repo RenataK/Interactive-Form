@@ -16,8 +16,6 @@ button {
 
 body {
   font: 1em/1.5;
-  color: rgba(6, 49, 68, 0.9);
-	background: #CDE0FB;
 }
 
 header {
@@ -37,6 +35,11 @@ a {
 /* =================================
   Form Element Styles
 ==================================== */
+
+.form-section {
+  float: left;
+  width: 80%; /* Adjust the width based on your preference */
+}
 
 form {
 	padding: .875em 1.875em 1.875em;
@@ -212,5 +215,104 @@ option {
 
 	label {
 		clear: both;
+	}
+}
+
+/* Add styles for left and right image containers */
+.image-container-one,
+.image-container-two {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 5%;
+}
+
+.image-container-one {
+	left: 3%;
+}
+
+.image-container-two {
+	right: 1%;
+	padding-right: 50px;
+}
+
+.left-images img {
+	width: 380px;
+  height: auto;
+	margin-bottom: 1em;
+}
+
+.right-images img {
+	width: 380px;
+  height: auto;
+	margin-bottom: 1em;
+}
+
+/* Add media queries for responsiveness */
+@media (max-width: 1100px) {
+  .image-container-one,
+	.image-container-two {
+		display: none;
+	}
+}
+
+@media (max-width: 1100px) {
+	.image-container-one,
+	.image-container-two {
+		display: none;
+	}
+}
+
+@media (min-width: 1101px) {
+	.left-images img,
+	.right-images img {
+		width: 280px;
+		height: 310px;
+		margin-bottom: 1em;
+	}
+
+	.image-container-one {
+		z-index: -1;
+	}
+	
+	.image-container-two {
+		z-index: -1;
+	}
+}
+
+@media (min-width: 1200px) {
+	.left-images img,
+	.right-images img {
+		width: 250px;
+		height: 310px;
+		margin-bottom: 1em;
+	}
+
+	.image-container-one {
+		left: 3%;
+	}
+}
+
+@media (min-width: 1501px) {
+	.left-images img,
+	.right-images img {
+		width: 390px;
+		height: 310px;
+		margin-bottom: 1em;
+	}
+
+	.image-container-one {
+		left: 3%;
+	}
+}
+
+@media (min-width: 2000px) {
+	.left-images img,
+	.right-images img {
+		width: 700px;
+		height: 310px;
+		margin-bottom: 1em;
 	}
 }
